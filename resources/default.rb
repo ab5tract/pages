@@ -6,24 +6,24 @@ module Pages
       
       include Waves::Resources::Mixin
       
-		  on( :get, :show => [{ :name => 'home' }] ) { show }
-
 		  on( :get, [ :resource, { :name => 'home' }] ) { show }		  
 
-      on( :post, :add =>  [ 'admin', :resource, :name ] ) do
-        controller.create( captured.to_h ) and redirect( paths.show )
+		  on( :get, :show => [{ :name => 'home' }] ) { show }
+
+      on( :post, :add =>  [ 'admin', :resource ] ) do
+        controller.create and redirect( paths.show )
       end
       
       on( :get, :edit => [ 'admin', :resource, :name ] ) do
         view.editor( singular => controller.find( captured.name ) )
       end
             
-      on( :put, :update =>  [ 'admin', :resource, :name ] ) do
+      on( :post, :update =>  [ 'admin', :resource, :name ] ) do
         controller.update( captured.name ) and redirect( paths( :site ).admin )
       end
     
       on( :delete, :delete =>  [ 'admin', :resource, :name ] ) do
-        controller.delete( captured.name ) and redirect( paths( :site ).main )
+        controller.delete( captured.name ) and redirect( paths( :site ).admin )
       end
                 
       private
