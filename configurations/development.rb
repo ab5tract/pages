@@ -14,8 +14,8 @@ module Pages
         run ::Waves::Dispatchers::Default.new
       end
 
-#      cache :dir => '/tmp'
-      cache :servers =>"127.0.0.1"
+      cache :dir => '/tmp'
+#      cache :servers =>"127.0.0.1"
     end
   end
 end
