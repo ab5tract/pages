@@ -6,7 +6,6 @@ module Pages
       log :level => :debug
       host '127.0.0.1'
       port 3000
-	    handler ::Rack::Handler::Mongrel, :Host => host, :Port => port
 	    session :duration => 30.minutes, :path => './tmp/sessions'
       
       application do
@@ -14,8 +13,11 @@ module Pages
         run ::Waves::Dispatchers::Default.new
       end
 
-      cache :dir => '/tmp'
+
 #      cache :servers =>"127.0.0.1"
+
+      server Waves::Servers::Mongrel.new
+      cache :dir => '/tmp'
     end
   end
 end

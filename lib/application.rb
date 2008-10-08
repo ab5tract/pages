@@ -4,14 +4,11 @@ require 'lib/image'
 require 'lib/response_mixin'
 
 #require 'layers/cache/memcached'
-#require 'layers/cache/file'
+require 'layers/caches/file'
 
 module Pages
 	include Waves::Foundations::Classic
-	
   # => Cache testing code
   # include Waves::Layers::Cache::Memcached
-  # include Waves::Layers::Cache::File
+  include Waves::Layers::Caches::File
 end
-
-Waves << Pages
